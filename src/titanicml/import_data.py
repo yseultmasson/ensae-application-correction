@@ -1,10 +1,13 @@
 """Prepare environment for Titanic analysis
 """
+import os
 import yaml
 import pandas as pd
 
+config_file = os.path.join(os.path.dirname(__file__), "config.yaml")
 
-def import_yaml_config(location: str) -> dict:
+
+def import_yaml_config(location: str = config_file) -> dict:
     """Wrapper to easily import YAML
 
     Args:
