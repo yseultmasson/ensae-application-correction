@@ -5,3 +5,4 @@ fastapi[full]
 uvicorn
 pyarrow
 matplotlib
+shap
