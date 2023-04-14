@@ -35,6 +35,7 @@ TEST_FRACTION = config["model"]["test_fraction"]
 TrainingData = imp.import_data(LOCATION_TRAIN)
 TestData = imp.import_data(LOCATION_TEST)
 
+
 # Create a 'Title' variable
 TrainingData = imp.create_variable_title(TrainingData)
 TestData = imp.create_variable_title(TestData)
@@ -56,6 +57,7 @@ train, test = te.split_train_test_titanic(
     fraction_test=TEST_FRACTION
     )
 
+train.to_parquet("train.parquet")
 
 # MODELISATION: RANDOM FOREST ----------------------------
 
