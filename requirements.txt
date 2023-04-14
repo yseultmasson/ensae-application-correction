@@ -4,3 +4,4 @@ scikit-learn
 fastapi[full]
 uvicorn
 pyarrow
+matplotlib
