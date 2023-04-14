@@ -18,6 +18,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
           pip install jupyter
+          python train.py
       - name: Set up quarto
         uses: quarto-dev/quarto-actions/setup@v2
       - name: Publish to GitHub Pages (and render)
