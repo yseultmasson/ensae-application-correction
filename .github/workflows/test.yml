@@ -26,4 +26,5 @@ jobs:
           pylint src --fail-under=6
       - name: Test workflow
         run: |
+          python train.py
           python main.py
