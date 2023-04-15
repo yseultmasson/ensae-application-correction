@@ -1,7 +1,3 @@
 project:
   title: "application-correction"
   type: website
-
-post-render:
-  - "cp ./Jake.html _site/Jake.html"
-  - "cp ./Rose.html _site/Rose.html"
