@@ -5,8 +5,14 @@ format: html
 echo: false
 ---
 
+<br>
+
 Ce rapport vise à révéler la fatalité
-derrière les 2h30 du film Titanic.
+derrière les 3h du film Titanic.
+
+Il sert d'illustration au cours de 
+l'ENSAE ["Mise en production de projets _data science_"](https://linogaliana.github.io/ensae-reproductibilite-website/)
+
 
 ## Prédiction de notre modèle
 
@@ -37,8 +43,31 @@ out = pd.concat(
     df], axis = 1
 )
 out["Survie"] = np.where(out["Survie"] == 1, "Survie", "Décès")
-out
+ojs_define(output_model = out)
 ```
+
+```{ojs}
+df_js = transpose(output_model)
+Inputs.table(
+    df_js, {
+    header: {
+        Survie: "Prédiction de survie",
+        name: "Personnage",
+        age: "Age",
+        Fare: "Prix du ticket",
+        Pclass: "Classe",
+        Sex: "Genre"
+    },
+    format : {
+        name: x => x.charAt(0).toUpperCase() + x.slice(1),
+        Sex: x => x.charAt(0).toUpperCase() + x.slice(1),
+        Fare: sparkbar(d3.max(df_js, d => d.Fare))
+    }
+ }
+)
+```
+
+<br>
 
 ```{python}
 preprocessing = model[:-1]
@@ -67,17 +96,26 @@ explainer = shap.TreeExplainer(clf)
 #| output: false
 choosen_instance1 = test_matrice.loc[[0]]
 shap_values = explainer.shap_values(choosen_instance1)
+shap.initjs()
+```
+
+```{python}
 shap.save_html(
-    'Jake.html',
+    '_site/Jake.html',
     shap.force_plot(explainer.expected_value[1], shap_values[1], choosen_instance1))
 ```
+
 
 ```{python}
 #| output: false
 choosen_instance2 = test_matrice.loc[[1]]
 shap_values = explainer.shap_values(choosen_instance2)
+shap.initjs()
+```
+
+```{python}
 shap.save_html(
-    'Rose.html',
+    '_site/Rose.html',
     shap.force_plot(explainer.expected_value[1], shap_values[1], choosen_instance2))
 ```
 
@@ -104,6 +142,20 @@ html`<img src="${url}" height="300px">`
 ```
 
 ```{ojs}
-html`<embed type="text/html" src="${perso}.html" width="900" height="200">`
+html`<iframe width="560" height="315" src="${perso}.html" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`
 ```
 
+
+```{ojs}
+function sparkbar(max) {
+  return x => htl.html`<div style="
+    background: lightblue;
+    width: ${100 * x / max}%;
+    float: right;
+    padding-right: 3px;
+    box-sizing: border-box;
+    overflow: visible;
+    display: flex;
+    justify-content: end;">${x.toLocaleString("en")}`
+}
+```
