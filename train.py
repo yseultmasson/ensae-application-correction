@@ -6,7 +6,7 @@ Prediction de la survie d'un individu sur le Titanic
 
 import sys
 import os
-
+from joblib import dump
 from sklearn.metrics import confusion_matrix
 import src.data.import_data as imp
 import src.features.build_features as bf
@@ -79,3 +79,7 @@ print(
         test["Survived"], pipe.predict(test.drop("Survived", axis="columns"))
     )
 )
+
+
+# model export
+dump(pipe, 'model.joblib')
