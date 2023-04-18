@@ -59,9 +59,7 @@ train, test = te.split_train_test_titanic(
 
 # MODELISATION: RANDOM FOREST ----------------------------
 
-pipe = te.random_forest_titanic(
-    data=TrainingData, fraction_test=TEST_FRACTION, n_trees=N_TREES
-)
+pipe = te.build_pipeline(n_trees=N_TREES)
 
 pipe.fit(train.drop("Survived", axis="columns"), train["Survived"])
 

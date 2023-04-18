@@ -1,7 +1,6 @@
 import pandas as pd
 
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import MinMaxScaler, LabelEncoder, OneHotEncoder
+from sklearn.preprocessing import MinMaxScaler, OneHotEncoder
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.impute import SimpleImputer
 from sklearn.pipeline import Pipeline
@@ -30,23 +29,17 @@ def split_train_test_titanic(
     return train, test
 
 
-def random_forest_titanic(
-    data: pd.DataFrame, fraction_test: float = 0.9, n_trees: int = 20
+def build_pipeline(
+    n_trees: int = 20
 ):
     """Random forest model for Titanic survival
 
     Args:
-        data (pd.DataFrame): _description_
-        fraction_test (float, optional): _description_. Defaults to 0.9.
         n_trees (int, optional): _description_. Defaults to 20.
 
     Returns:
         _type_: _description_
     """
-
-    data[["Sex", "Title", "Embarked"]] = data[["Sex", "Title", "Embarked"]].astype(
-        "str"
-    )
 
     numeric_features = ["Age", "Fare"]
     categorical_features = ["Title", "Embarked", "Sex"]
