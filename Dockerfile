@@ -14,6 +14,7 @@ COPY api.py .
 COPY train.py .
 COPY src ./src
 COPY configuration ./configuration
-COPY start.sh .
 
-CMD ["start.sh"]
+COPY run.sh .
+
+CMD ["bash", "-c", "./run.sh"]
