@@ -2,6 +2,7 @@
 Prediction de la survie d'un individu sur le Titanic
 """
 
+
 # GESTION ENVIRONNEMENT --------------------------------
 
 import sys
