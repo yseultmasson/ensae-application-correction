@@ -21,7 +21,7 @@ jobs:
           pylint src --fail-under=6
       - name: Test workflow
         run: |
-          python main.py
+          python train.py
   docker:
     runs-on: ubuntu-latest
     needs: test
