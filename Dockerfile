@@ -14,5 +14,6 @@ COPY api.py .
 COPY train.py .
 COPY src ./src
 COPY configuration ./configuration
+COPY start.sh .
 
-CMD ["uvicorn", "api:app", "--host", "0.0.0.0", "--port", "5000"]
+CMD ["start.sh"]
