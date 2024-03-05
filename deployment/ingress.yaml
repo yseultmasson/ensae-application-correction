@@ -8,9 +8,9 @@ spec:
   ingressClassName: nginx
   tls:
   - hosts:
-    - titanic.kub.sspcloud.fr
+    - titanic-ymasson.kub.sspcloud.fr
   rules:
-  - host: titanic.kub.sspcloud.fr
+  - host: titanic-ymasson.kub.sspcloud.fr
     http:
       paths:
       - path: /
