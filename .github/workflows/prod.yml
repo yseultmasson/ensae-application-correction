@@ -23,4 +23,4 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: true
-          tags: yseultmasson/application-correction:latest
+          tags: yseultmasson/application-correction:v1.0.0
